@@ -1,0 +1,16 @@
+graph "sample_topology" {
+  "spine0" [ function="spine" memory="1024" os="cumulus-vx-5.5.0" cpu="1"]
+  "spine1" [ function="spine" memory="1024" os="cumulus-vx-5.5.0" cpu="1"]
+  "leaf0" [ function="leaf" memory="1024" os="cumulus-vx-5.5.0" cpu="1"]
+  "leaf1" [ function="leaf" memory="1024" os="cumulus-vx-5.5.0" cpu="1"]
+  "server01" [ function="server" memory="1024" os="generic/ubuntu2204" cpu="1"]
+  "server02" [ function="server" memory="1024" os="generic/ubuntu2204" cpu="1"]
+    "leaf0":"swp1" -- "spine0":"swp1"
+    "leaf0":"swp2" -- "spine1":"swp1"
+    "leaf1":"swp1" -- "spine0":"swp2"
+    "leaf1":"swp2" -- "spine1":"swp2"  
+    "server01":"swp1" -- "leaf01":"swp3"
+    "server01":"swp2" -- "leaf02":"swp3"
+    "server02":"swp1" -- "leaf01":"swp4"
+    "server02":"swp2" -- "leaf02":"swp4"
+}
